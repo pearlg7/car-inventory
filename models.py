@@ -50,13 +50,15 @@ class User(db.Model, UserMixin):
         return f'User {self.email} has been added to the database'
 
 class Car(db.Model):
+    id = db.Column(db.String, primary_key=True)
     vin= db.Column(db.String(17), primary_key=True)
     make = db.Column(db.String(150), nullable=False)
     model = db.Column(db.String(200))
     year = db.Column(db.String(20))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
-    def __init__(self, vin, make, model, year, user_token):
+    def __init__(self, vin, make, model, year, user_token, id = ''):
+        self.id = self.set_id()
         self.vin = vin
         self.make = make
         self.model = model
@@ -72,7 +74,7 @@ class Car(db.Model):
 
 class CarSchema(ma.Schema):
     class Meta:
-        fields = ['vin', 'make','model','year', 'user_token']
+        fields = ['id', 'vin', 'make','model','year', 'user_token']
 
 car_schema = CarSchema()
 cars_schema = CarSchema(many=True)

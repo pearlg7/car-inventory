@@ -23,7 +23,7 @@ def create_car(current_user_token):
 
     print(f'BIG TESTER: {current_user_token.token}')
 
-    car = Car(vin, make, model, year, user_token=user_token )
+    car = Car(vin, make, model, year, user_token = user_token )
 
     db.session.add(car)
     db.session.commit()
