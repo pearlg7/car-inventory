@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
 
 class Car(db.Model):
     id = db.Column(db.String, primary_key=True)
-    vin= db.Column(db.String(17), primary_key=True)
+    vin= db.Column(db.String(17))
     make = db.Column(db.String(150), nullable=False)
     model = db.Column(db.String(200))
     year = db.Column(db.String(20))
